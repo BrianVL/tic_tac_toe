@@ -39,4 +39,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 5. Create a new Pull Request
 =======
 # tic_tac_toe
-Command line Tic Tac Toe game
+Command line Tic Tac Toe game-
