@@ -46,6 +46,11 @@ module TicTacToe
       end
     end
 
+    TestCell = Struct.new(:value)
+    let(:x_cell) { TestCell.new("X") }
+    let(:y_cell) { TestCell.new("Y") }
+    let (:empty) { TestCell.new }
+
     context "#game_over" do
       it "returns :winner if winner? is true" do
         board = Board.new
@@ -65,6 +70,26 @@ module TicTacToe
         board.stub(:winner?) { false }
         board.stub(:draw?) { false }
         expect(board.game_over).to be false
+      end
+
+      it "returns :winner when row has objects with values that are all the same" do
+        grid =[
+          [x_cell, x_cell, x_cell],
+          [y_cell, x_cell, y_cell],
+          [y_cell, y_cell, empty]
+        ]
+        board = Board.new(grid: grid)
+        expect(board.game_over).to eq :winner
+      end
+
+      it "returns :winner when column has objects with values that are all the same" do
+        grid =[
+          [x_cell, x_cell, empty],
+          [y_cell, x_cell, y_cell],
+          [y_cell, x_cell, empty]
+        ]
+        board = Board.new(grid: grid)
+        expect(board.game_over).to eq :winner
       end
     end
 
