@@ -26,7 +26,7 @@ module TicTacToe
     end
 
     def draw?
-      grid.flatten.map { |cell| cell.value }.none_empt
+      grid.flatten.map { |cell| cell.value }.none_empty?
     end
 
     def winning_positions
@@ -44,13 +44,13 @@ module TicTacToe
 
     def winner?
       winning_positions.each do |winning_position|
-        next if winning_positions_values(winning_positions).all_empty?
-        return true if winning_positions_values(winning_positions).all_same?
+        next if winning_position_values(winning_position).all_empty?
+        return true if winning_position_values(winning_position).all_same?
       end
       false
     end
 
-    def winning_positions_values(winning_position)
+    def winning_position_values(winning_position)
       winning_position.map { |cell| cell.value }
     end
   end
